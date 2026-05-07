@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{url_for('static', filename='styles/different-time-country.css')}}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/datepicker.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div class="header">
+        <div class="header-text-wrapper">
+            <img class="logo" src="{{ url_for('static',filename='assets/logo.png') }}">
+            <h1 class="headerText"> ENERGY MARKET ANALYSIS</h1>
+        </div>
+        <div class="home-button-wrapper">
+            <div class="home-button" id="return-home">
+                <h1>Return Home</h1>
+            </div>
+        </div>
+    </div>
+    <div class="title">
+        <h1>One Country - Different Time Periods</h1>
+    </div>
+    <div class="information">
+        <h1 class="title">
+            Information
+        </h1>
+        <h1 class="text">
+            Η Δεύτερη λειτουργία αναπτύχθηκε για την σύγκριση των τιμών της ηλεκτρικής ενέργειας στην ελληνική αγορά. Έτσι ο χρήστης με τις κατάλληλες οδηγίες μπορεί να παρουσιάσει σε μορφή διαγραμμάτων τις τιμές των διάφορων χρονικών περιόδων στην ελληνική αγορά. Δείκτες όπως ο Μέσος Όρος και η Τυπική απόκλιση θα βοηθήσουν στην σύγκριση των τιμών αυτών.
+        </h1>
+    </div>
+    <div class="usage">
+        <h1 class="title">
+            Usage
+        </h1>
+        <h1 class="text">
+            Η Λειτουργία αυτή επικεντρώνεται στην μελέτη των ηλεκτρικών τιμών της Ελλάδας ανά χρονικά διαστήματα. Για να χρησιμοποιηθεί η λειτουργία πρέπει να επιλεχθεί ένα χρονικό διάστημα με το μέγιστο ενός έτους και με χρήση του κουμπιού Add Date προστίθεται στην λίστα των χρονικών διαστημάτων. Ο προτεινόμενος αριθμός διαστημάτων είναι λιγότερος από δέκα. Κάποιο χρονικό διάστημα μπορεί να αφαιρεθεί με την χρήση του κουμπιού Χ στον πίνακα με τα διαστήματα.
+        </h1>
+    </div>
+    <div class="timetable">
+        <div class="table-wrapper">
+            <table class="styled-table" id="tableInfo">
+                <tr>
+                    <th>
+                        Start Date
+                    </th>
+                    <th>
+                        End Date
+                    </th>
+                    <th>
+                        Color
+                    </th>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="inputs">
+        <div class="datapickers">
+            <div class="start">
+                <h1>Starting Date</h1>
+                <div class="relative max-w-sm">
+                    <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                        </svg>
+                    </div>
+                    <input datepicker type="text" id="start_date"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Select date">
+                </div>
+            </div>
+            <div class="end">
+                <h1>End Date</h1>
+                <div class="relative max-w-sm">
+                    <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                        </svg>
+                    </div>
+                    <input datepicker type="text" id="end_date"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Select date">
+                </div>
+            </div>
+        </div>
+        <div class="add-regions-bidding-input">
+            <div class="regions-bidding">
+                <select id="timeline-selector">
+
+                </select>
+            </div>
+        </div>
+        <div class="button" id="button">
+            <h1> Add Date </h1>
+        </div>
+    </div>
+    <div class="spinner-wrapper">
+        <div class="lds-default invisible" id="spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    </div>
+    <div class="GraphCanvas" id="canvas">
+        <div class="Chart">
+        </div>
+    </div>
+    <div class="datatable">
+        <div class="table-wrapper">
+            <table class="styled-table" id="tableData">
+                <tr>
+                    <th>
+                        Start Date
+                    </th>
+                    <th>
+                        End Date
+                    </th>
+                    <th>
+                        Minimum
+                    </th>
+                    <th>
+                        Maximum
+                    </th>
+                    <th>
+                        Average
+                    </th>
+                    <th>
+                        Standar Deviation
+                    </th>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <script>
+
+        var time_periods = [];
+        const colors = 
+        [
+            "#302530",
+            "#827d2c",
+            "#6d0b8e",
+            "#b75200",
+            "#30212c",
+            "#1f2812",
+            "#37873e",
+            "#b3a8b5",
+            "#91c194",
+            "#dbe0dc",
+            "#121602",
+            "#8d8893",
+            "#3a8fbc",
+            "#9fa3a8",
+            "#25e876"
+        ]
+
+        const Timeline = [
+            "Hourly",
+            "Daily",
+            "Weekly",
+            "Monthly"
+        ]
+
+        const Values = [
+            1,
+            24,
+            168,
+            720
+        ]
+
+        var timelineSelector = document.getElementById("timeline-selector");
+        timelineSelector.innerHTML = "";
+        for(var i = 0; i < Timeline.length; i++)
+        {
+            timelineSelector.innerHTML += `<option value="${Values[i]}">${Timeline[i]}</option>`;
+        }
+
+        <!-- Create Labels -->
+        function createLabels(response){
+            labels = []
+            for(var i = 0; i < response["data"].data.length; i++)
+            {
+                for( var j = 0; j < response["data"].data[i][1].length; j++)
+                {
+                    if(typeof labels[j] == 'undefined') {
+                        labels.push(response["data"].data[i][1][j])
+                    } else {
+                        labels[j] = labels[j] + " - " + response["data"].data[i][1][j];
+                    }
+                } 
+            }
+            return labels;
+        }
+        
+        <!-- Generate Info Table -->
+        function generateTable()
+        {
+
+            var table = document.getElementById("tableInfo");
+            table.innerHTML = "<tr><th>Start Date </th><th>End Date</th><th>Color</th><th></th></tr>";
+            for(var i = 0; i < time_periods.length; i++)
+            {
+                table.innerHTML += "<tr>";
+                table.innerHTML += `<td>${time_periods[i][0]}</td><td>${time_periods[i][1]}</td><td><div style="background-color:${colors[i]}; width: 30px; height: 30px;"></div></td><td><div style="width: 100%; height: 100%"><img class="close-icon close-button" data-id="${i}" src="{{ url_for('static',filename='assets/close.svg') }}"></div></td>`;
+                table.innerHTML += "</tr>";
+            }
+            var elements = document.getElementsByClassName("close-button");
+            for(var j = 0; j < elements.length; j++)
+            {
+                elements[j].addEventListener('click', function(){
+                    tableListeners(this)
+                });                
+            }
+        }
+
+        <!-- Generate Data Table -->
+        function generateDataTable(response)
+        {
+            var table = document.getElementById("tableData");
+            table.innerHTML = "<tr><th>Start Date </th><th>End Date</th><th>Minimum</th><th>Maximum</th><th>Average</th><th>Standar Deviation</th></tr>";
+            for(var i = 0; i < response["data"].data.length; i++)
+            {
+                table.innerHTML += "<tr>";
+                table.innerHTML += `<td>${time_periods[i][0]}</td><td>${time_periods[i][1]}</td><td>${response["data"].data[i][3].toFixed(2)}</td><td>${response["data"].data[i][2].toFixed(2)}</td><td>${response["data"].data[i][4].toFixed(2)}</td><td>${response["data"].data[i][5].toFixed(2)}</td>`
+                table.innerHTML += "</tr>";
+            }
+        }
+
+        <!-- Get Data -->
+        function getData() {
+
+            var spinner = document.getElementById("spinner");
+            spinner.classList.remove("invisible");
+            var chart = document.getElementById("canvas");
+            chart.classList.add("invisible");
+
+            if(document.getElementById("start_date").value != "" || document.getElementById("end_date").value != "") {
+                time_periods.push([document.getElementById("start_date").value.replaceAll("/","-"), document.getElementById("end_date").value.replaceAll("/","-")]);
+            }
+            document.getElementById("start_date").value = "";
+            document.getElementById("end_date").value = "";
+            generateTable();
+
+            axios.post( 
+                '/getdata',
+                {
+                    data: time_periods,
+                    timeline: document.getElementById("timeline-selector").value
+                }
+            ).then((response) => {
+                const data = {
+                    labels: createLabels(response),
+                    datasets: []
+                }
+
+                for(var i = 0; i < response["data"].data.length; i++)
+                {
+                    data["datasets"].push({
+                        type: 'line',
+                        label: `${time_periods[i][0]} - ${time_periods[i][1]}`,
+                        data: response["data"].data[i][0],
+                        borderColor: colors[i],
+                        fill: false,
+                        stepped: true,
+                    })
+                }
+
+                const config = {
+                    data: data,
+                    options: {
+                        scales: {
+                            y: {
+                                display: true,
+                                title: {
+                                    display: true,
+                                    text: 'Price per MWH'
+                                },
+                                beginAtZero: true,
+                            },
+                            x: {
+                                displau: true,
+                                title: {
+                                    display: true,
+                                    text: 'Dates'
+                                }
+                            }
+                        },
+                        responsive: true,
+                        interaction: {
+                            intersect: false,
+                            axis: 'x'
+                        },
+                        plugins: {
+                        }
+                    }
+                };
+
+                generateDataTable(response)
+
+                const chartArea = document.getElementsByClassName('Chart');
+                if(chartArea[0].childElementCount > 0)
+                {   
+                    chartArea[0].innerHTML = ''
+                }
+                
+
+                chartArea[0].innerHTML = '<canvas id="ChartCanvas"></canvas>';
+                const ctx = document.getElementById("ChartCanvas");
+                new Chart(ctx, config);
+
+                spinner.classList.add("invisible");
+                chart.classList.remove("invisible");
+
+            });
+
+        }
+
+        function redirect (url) {
+            var ua        = navigator.userAgent.toLowerCase(),
+                isIE      = ua.indexOf('msie') !== -1,
+                version   = parseInt(ua.substr(4, 2), 10);
+        
+            // Internet Explorer 8 and lower
+            if (isIE && version < 9) {
+                var link = document.createElement('a');
+                link.href = url;
+                document.body.appendChild(link);
+                link.click();
+            }
+        
+            // All other browsers can use the standard window.location.href (they don't lose HTTP_REFERER like Internet Explorer 8 & lower does)
+            else { 
+                window.location.href = url; 
+            }
+        }
+
+        <!-- Create Listeners -->
+        document.getElementById("button").addEventListener("click", function(){
+            getData();
+        });
+        document.getElementById("return-home").addEventListener("click", function(){
+            redirect("/");
+        });
+
+        <!-- Info Table Listeners-->
+        function tableListeners(element){
+            time_periods.splice(element.getAttribute("data-id"),1);
+            generateTable();
+            getData();
+        }
+
+    </script>
+</body>
+
+</html>

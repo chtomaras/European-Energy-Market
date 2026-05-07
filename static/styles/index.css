@@ -1,0 +1,407 @@
+* {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    float: left;
+    margin: 50px;
+    width: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    border: 4px solid rgb(9, 124, 200);
+    background-color: rgb(247, 241, 241);
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  }
+
+li:hover {
+    transform: scale(1.2);
+    transition: transform 280ms ease-out 50ms;
+}
+  
+a {
+    display: block;
+    padding: 8px;
+    font-size: 23px;
+}
+
+.header {
+    width:100%;
+    display: flex;
+    align-items: center;
+    justify-self: left;
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.headerText {
+    font-family: "Fjalla One", sans-serif;
+    font-size: 60px;
+    font-weight: 500;
+}
+
+.logo {
+    width: scale(0.7);
+    height: scale(0.7);
+}
+
+.navigation {
+    margin-top: 30px;
+    width: 100%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.banner {
+    width:100%;
+    margin: 0;
+    margin-top: 30px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+img.bannerImage {
+    margin: 0;
+    padding: 0;
+    width:34%;
+    height: 34%;
+}
+
+/* Project Inforation */
+
+.ProjectInformation {
+    width: 100%;
+    font-family: "Fjalla One", sans-serif;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    font-weight: 500;
+}
+
+.ProjectInformation div h1 {
+    width: 100%;
+    align-self: center;
+    font-size: 70px;
+}
+
+.ProjectInformation div p {
+    word-break: keep-all;
+    text-align: center;
+    font-size: 30px;
+    width: 100%;
+}
+
+/* Project Functionality Section */
+
+.functionalitySection {
+    width: 100%;
+    font-family: "Fjalla One", sans-serif;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    font-weight: 500;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.functionalitySection div h1 {
+    width: 100%;
+    align-self: center;
+    font-size: 70px;
+}
+
+.functionButton1 {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    height: 250px;
+    background-color: cadetblue;
+}
+
+.functionButton1 .text {
+    word-break: keep-all;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    height: 100%;
+    background-color: cadetblue;
+    font-size: 26px;
+}
+
+.functionButton1 .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    height: 100%;
+    background-color: rgb(67, 115, 117);
+}
+
+.functionButton1 .button img{
+    width: 60%;
+    height: 60%;
+    background-color: transparent;
+}
+
+.functionButton1 .button:hover{
+    transform: scale(1.05);
+    transition-duration: 0.3s;
+    background-color: rgb(68, 152, 154);
+}
+
+.functionButton2 {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    height: 250px;
+    background-color: rgb(86, 132, 149);
+}
+
+.functionButton2 .text {
+    word-break: keep-all;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    height: 100%;
+    background-color: rgb(86, 132, 149);
+    font-size: 26px;
+}
+
+.functionButton2 .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    height: 100%;
+    background-color: rgb(65, 103, 117);
+}
+
+.functionButton2 .button img{
+    width: 60%;
+    height: 60%;
+    background-color: transparent;
+}
+
+.functionButton2 .button:hover{
+    transform: scale(1.05);
+    transition-duration: 0.3s;
+    background-color: rgb(86, 132, 149);
+}
+
+.functionButton3 {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    height: 250px;
+    background-color: rgb(86, 114, 149);
+}
+
+.functionButton3 .text {
+    word-break: keep-all;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    height: 100%;
+    background-color: rgb(86, 114, 149);
+    font-size: 26px;
+}
+
+.functionButton3 .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    height: 100%;
+    background-color: rgb(77, 103, 135);
+}
+
+.functionButton3 .button img{
+    width: 60%;
+    height: 60%;
+    background-color: transparent;
+}
+
+.functionButton3 .button:hover{
+    transform: scale(1.05);
+    transition-duration: 0.3s;
+    background-color: rgb(86, 114, 149);
+}
+
+/* Historical Data Section */
+
+.historicalData {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 100px;
+}
+
+.historicalData div h1.header{
+    width: 100%;
+    align-self: center;
+    font-size: 70px;
+}
+
+.historicalData .container {
+    width: 100%;
+    height: 800px;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-bottom: 50px;
+    display: grid;
+    justify-content: space-evenly;
+    grid-template-columns: auto auto auto;
+    column-gap: 50px;
+    row-gap: 50px;
+}
+
+.historicalData .container .card {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    overflow: hidden;
+    border-radius: 10px;
+    width: 400px;
+    height: 650px;
+}
+
+.historicalData .container .card:hover {
+    transform: scale(1.1);
+    transition-timing-function: ease;
+    transition-duration: 0.3s; 
+}
+
+.historicalData .container .card .img {
+    height:40%;
+    width:100%;
+}
+
+.historicalData .container .card .img img{
+    width: 100%;
+    height: 100%;
+}
+
+.historicalData .container .card .text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 60%;
+    width: 100%;
+    background-color: #e3b897;
+}
+
+.historicalData .container .card .text .title {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.historicalData .container .card .text .title h1 {
+    width: 100%;
+    height: 100%;
+    text-shadow: 1px 1px 1px black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Roboto", sans-serif;
+    font-weight: 600;
+    font-size: 26px;
+    margin: 0;
+}
+
+.historicalData .container .card .text .date h1 {
+    display: flex;
+    align-items: center;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-size: 20;
+    font-style: normal;
+    width: 100%;
+    height: 10%;
+    margin: 0;
+}
+
+.historicalData .container .card .text .body{
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+    padding-left: 15px;
+    padding-right: 10px;
+}
+
+.historicalData .container .card .text .date{
+    display: flex;
+    align-items: center;
+    padding-top: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.historicalData .container .card .text .break{
+    display: flex;
+    align-items: center;
+    width: 80%;
+    margin-top: 5px;
+}
+
+.historicalData .container .card .text .break hr{
+    width: 100%;
+}
+
+
+.historicalData .container .card .text .body h1 {
+    font-family: "Roboto", sans-serif;
+    font-style: italic;
+    text-overflow: clip;
+    text-align: left;
+    line-height: 1.4;
+    word-spacing: 1.5px;
+    font-weight: 300;
+    font-size: 20;
+    width: 100%;
+    height: 80%;
+    padding: 0px;
+    margin: 0;
+}
+
+.historicalData .container .card .text .body h1::first-letter {
+    font-size: 28px;
+    font-weight: 400;
+    font-style: bold;
+}

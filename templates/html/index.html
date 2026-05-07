@@ -1,0 +1,250 @@
+<head>
+    <title>BDEnergy</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/index.css') }}"> 
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+    <div class="header">
+        <img class="logo" src="{{ url_for('static',filename='assets/logo.png') }}">
+        <h1 class="headerText"> ENERGY MARKET ANALYSIS</h1>
+    </div>
+
+    <div class="banner">
+        <img class="bannerImage" src="{{ url_for('static',filename='assets/wind.jpg') }}">
+        <img class="bannerImage" src="{{ url_for('static',filename='assets/nuclear.jpg') }}">
+        <img class="bannerImage" src="{{ url_for('static',filename='assets/solar.jpg') }}">
+    </div>
+
+    <div class="ProjectInformation">
+        <div>
+            <h1 class="header"> General Information</h1>
+        </div>
+        <div>
+            <p class="text" >Είμαστε φοιτητές του Πανεπιστημίου Πατρών και στα πλαίσια του Μαθήματος Εισαγωγή στην Επιστήμη του Ηλεκτρολόγου Μηχανικού υλοποιήσαμε μια ιστοσελίδα μελέτης, σύγκρισης και ανάλυσης των τιμών ηλεκτρικής ενέργειας στον Ελλαδικό χώρο αλλά και σε Ευρωπαϊκό επίπεδο.<p>
+        </div>
+    </div>
+
+    <div class="functionalitySection">
+        <div>
+            <h1 class="header"> Functionality </h1>
+        </div>
+        <div class="functionButton1">
+            <div class="text">
+                <p>
+                    Η Πρώτη Λειτουργία χρησιμοποιείται για την αναζήτηση τιμών ηλεκτρικής ενέργειας σε διάφορες χρονικές περιόδους στην Ελλάδα. Ο χρήστης έχει την επιλογή να διαλέξει οποιοδήποτε χρονικό διάστημα μέχρι ενός έτους και να δει τους πιο σημαντικούς δείκτες. 
+                </p>
+            </div>
+            <div class="button">
+                <img src="{{ url_for('static',filename='assets/button-img.svg') }}">
+            </div>
+        </div>
+        <div class="functionButton2">
+            <div class="text">
+                <p>
+                    Η Δεύτερη λειτουργία αναπτύχθηκε για την σύγκριση των τιμών της ηλεκτρικής ενέργειας στην ελληνική αγορά. Έτσι ο χρήστης με τις κατάλληλες οδηγίες μπορεί να παρουσιάσει σε μορφή διαγραμμάτων τις τιμές των διάφορων χρονικών περιόδων στην ελληνική αγορά. Δείκτες όπως ο Μέσος Όρος και η Τυπική απόκλιση θα βοηθήσουν στην σύγκριση των τιμών αυτών.
+                </p>
+            </div>
+            <div class="button">
+                <img src="{{ url_for('static',filename='assets/button-img.svg') }}">
+            </div>
+        </div>
+        <div class="functionButton3">
+            <div class="text">
+                <p>
+                    Η Τρίτη λειτουργία της εφαρμογής μας επικεντρώνεται στην σύγκριση των τιμών ηλεκτρικής ενέργειας κάποιας ορισμένης χρονικής περιόδου μεταξύ διάφορων ευρωπαϊκών χωρών. Η σύγκριση αυτή κάνει φανερή την επίπτωση παγκόσμιων γεγονότων, στην αγορά ηλεκτρικής ενέργειας.
+                </p>
+            </div>
+            <div class="button">
+                <img src="{{ url_for('static',filename='assets/button-img.svg') }}">
+            </div>
+        </div>
+    </div>
+
+    <div class="historicalData">
+        <div>
+            <h1 class="header"> Historical Data </h1>
+        </div>
+        <div class="container">
+            <div class = "card">
+                <div class="img">
+                    <img src="{{ url_for('static', filename='assets/russian-ukraine-war.jpg') }}" alt="">
+                </div>
+                <div class="text">
+                    <div class="title">
+                        <h1>
+                            Ρωσο - Ουκρανικός Πόλεμος
+                        </h1>
+                    </div>
+                    <div class="date">
+                        <h1>
+                            • Φεβρουάριος 2022 – Σήμερα •
+                        </h1>
+                    </div>
+                    <div class="break">
+                        <hr>
+                    </div>
+                    <div class="body">
+                        <h1>
+                            Με την Ρώσικη εισβολή στην Ουκρανία, η Ευρώπη αποκόπηκε από τους πόρους που της παρείχε η Μέση Ανατολή. Έτσι, οι περισσότερες χώρες όπου βασίζονταν σε ορυκτά καύσιμα για την ηλεκτρική τους ενέργεια αναγκάστηκαν να αλλάξουν παρόχους ορυκτών καυσίμων κάτι όπου αύξησε την τιμή της MWH, σε κάποιες περιπτώσεις παραπάνω από 300€/MWH.
+                        </h1>
+                    </div>
+                </div>
+            </div>
+            <div class = "card">
+                <div class="img">
+                    <img src="{{ url_for('static', filename='assets/renuable-energy.jpg') }}" alt="">
+                </div>
+                <div class="text">
+                    <div class="title">
+                        <h1>
+                            Ανανεώσιμες Πηγές Ενέργειας
+                        </h1>
+                    </div>
+                    <div class="date">
+                        <h1>
+                            • 2001 - Σήμερα •
+                        </h1>
+                    </div>
+                    <div class="break">
+                        <hr>
+                    </div>
+                    <div class="body">
+                        <h1>
+                            Με συνεχή προσπάθεια της Ευρωπαϊκής ένωσης και άλλων παγκόσμιων οργανώσεων, η Ευρώπη και οι χώρες όλου του κόσμου αρχίσουν να αξιοποιούν τις ανανεώσιμες πηγές ενέργειας, απομακρύνοντας μας από τις βλαπτικές και πεπερασμένες πρώτες ύλες, οδηγώντας μας σε μια πιο φιλική προς το περιβάλλον προσέγγιση.
+                        </h1>
+                    </div>
+                </div>
+            </div>
+            <div class = "card">
+                <div class="img">
+                    <img src="{{ url_for('static', filename='assets/european-union.jpg') }}" alt="">
+                </div>
+                <div class="text">
+                    <div class="title">
+                        <h1>
+                            Ενοποίηση Αγοράς της Ευρώπης
+                        </h1>
+                    </div>
+                    <div class="date">
+                        <h1>
+                            • 2016 •
+                        </h1>
+                    </div>
+                    <div class="break">
+                        <hr>
+                    </div>
+                    <div class="body">
+                        <h1>
+                            Με σκοπό τη μετάβαση του Ελληνικού συστήματος αγοράς ηλεκτρικής ενέργειας σε μια ενοποιημένη Ευρωπαϊκή αγορά και με την έκδοση του νόμου 4425/2016, θεσπίστηκαν τέσσερις επιμέρους χονδρεμπορικές Αγορές: η Ενεργειακή Χρηματοπιστωτική Αγορά, η Αγορά Επόμενης Ημέρας, η Ενδοημερήσια Αγορά και η Αγορά Εξισορρόπησης.  
+                        </h1>                   
+                    </div>
+                </div>
+            </div>
+            <div class = "card">
+                <div class="img">
+                    <img src="{{ url_for('static', filename='assets/document.jpg') }}" alt="">
+                </div>
+                <div class="text">
+                    <div class="title">
+                        <h1>
+                            Ενεργειακά Νομοσχέδια
+                        </h1>
+                    </div>
+                    <div class="date">
+                        <h1>
+                            • 1990 – Σήμερα  •
+                        </h1>
+                    </div>
+                    <div class="break">
+                        <hr>
+                    </div>
+                    <div class="body">
+                        <h1>
+                            Από τη δεκαετία του 1990, η Ευρωπαϊκή Ένωση αποφάσισε να ανοίξει στον ανταγωνισμό τις εθνικές αγορές ηλεκτρικής ενέργειας με την έκδοση πέντε νομοσχεδίων. Συγκεκριμένα, το τελευταίο περιλαμβάνει τους ενεργειακούς στόχους της ΕΕ με τις νέες φιλοδοξίες της για το κλίμα για το 2030 και το 2050, γνωστό ως ”Fit for 55”.
+                        </h1>
+                    </div>
+                </div>
+            </div>
+            <div class = "card">
+                <div class="img">
+                    <img src="{{ url_for('static', filename='assets/ministry-of-energy.jpg') }}" alt="">
+                </div>
+                <div class="text">
+                    <div class="title">
+                        <h1>
+                            Ωράριο Χαμηλής Χρέωσης
+                        </h1>
+                    </div>
+                    <div class="date">
+                        <h1>
+                            • 14 Μαίου 2024 •
+                        </h1>
+                    </div>
+                    <div class="break">
+                        <hr>
+                    </div>
+                    <div class="body">
+                        <h1>
+                            Η χαμηλή ζήτηση και τα υψηλά επίπεδα παραγωγής ηλεκτρικής ενέργειας τις μεσημβρινές ώρες, λόγω της υψηλής παραγωγής των solar panel, οδηγεί σε δραματική μείωση της τιμής της ενέργειας, με την προοπτική της μετατόπισης του νυχτερινού τιμολογίου ηλεκτρικού ρεύματος στη μεσημβρινή ζώνη να εξετάζεται.
+                        </h1>
+                    </div>
+                </div>
+            </div>
+            <div class = "card">
+                <div class="img">
+                    <img src="{{ url_for('static', filename='assets/competition-law.jpeg') }}" alt="">
+                </div>
+                <div class="text">
+                    <div class="title">
+                        <h1>
+                            Νομοσχέδιο κατά Μονοπώλιου
+                        </h1>
+                    </div>
+                    <div class="date">
+                        <h1>
+                            • 2014 •
+                        </h1>
+                    </div>
+                    <div class="break">
+                        <hr>
+                    </div>
+                    <div class="body">
+                        <h1>
+                            Με την απαγόρευση του μονοπωλίου στις αγορές οποιαδήποτε μορφής, η αγορά ηλεκτρικής ενεργείας, ειδικά στην Ελλάδα αναγκάστηκε να μεταβεί από το μονοπώλιο της ΔΕΗ στην ανάπτυξη εταιριών παροχής ηλεκτρικής ενέργειας. Έτσι αναπτύχθηκε ο ανταγωνισμός στην αγορά ενέργειας που ρίχνει τις τιμές για να προσελκύσουν τους Έλληνες πολίτες.
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function redirect (url) {
+            var ua        = navigator.userAgent.toLowerCase(),
+                isIE      = ua.indexOf('msie') !== -1,
+                version   = parseInt(ua.substr(4, 2), 10);
+        
+            // Internet Explorer 8 and lower
+            if (isIE && version < 9) {
+                var link = document.createElement('a');
+                link.href = url;
+                document.body.appendChild(link);
+                link.click();
+            }
+        
+            // All other browsers can use the standard window.location.href (they don't lose HTTP_REFERER like Internet Explorer 8 & lower does)
+            else { 
+                window.location.href = url; 
+            }
+        }
+        document.getElementsByClassName("functionButton1")[0].addEventListener("click", function(){redirect("compute/one-country")});
+        document.getElementsByClassName("functionButton2")[0].addEventListener("click", function(){redirect("compute/different-time-country")});
+        document.getElementsByClassName("functionButton3")[0].addEventListener("click", function(){redirect("compute/different-country")});
+    </script>
+</body>

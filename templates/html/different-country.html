@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{url_for('static', filename='styles/different-country.css')}}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/datepicker.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div class="header">
+        <div class="header-text-wrapper">
+            <img class="logo" src="{{ url_for('static',filename='assets/logo.png') }}">
+            <h1 class="headerText"> ENERGY MARKET ANALYSIS</h1>
+        </div>
+        <div class="home-button-wrapper">
+            <div class="home-button" id="return-home">
+                <h1>Return Home</h1>
+            </div>
+        </div>
+    </div>
+    <div class="title">
+        <h1>Different Countries - Same Period</h1>
+    </div>
+    <div class="information">
+        <h1 class="title">
+            Information
+        </h1>
+        <h1 class="text">
+            Η Τρίτη λειτουργία της εφαρμογής μας επικεντρώνεται στην σύγκριση ,των τιμών κάποιας ορισμένης χρονικής περιόδου, μεταξύ διάφορων Ευρωπαϊκών χωρών. Η σύγκριση αυτή κάνει φανερή την επίπτωση παγκόσμιων γεγονότων, στην αγορά ηλεκτρικής ενέργειας.
+        </h1>
+    </div>
+    <div class="usage">
+        <h1 class="title">
+            Usage
+        </h1>
+        <h1 class="text">
+            Η λειτουργία αυτή επικεντρώνεται στην σύγκριση ηλεκτρικών τιμών σε διάφορες Ευρωπαϊκές χώρες για ένα δεδομένο διάστημα. Αρχικά ο χρήστης πρέπει να επιλέξει το διάστημα στο οποίο θέλει να αναφερθεί. Αυτό γίνεται με την εισαγωγή του διαστήματος στα πεδία Start Date και End Date. Το διάστημα πρέπει να έχει μέγιστο το ένα έτος. Έπειτα πρέπει να επιλεχθούν οι χώρες στις οποίες θέλουμε να αναφερθούμε. Για κάθε χώρα επιλέγεται στο πεδίο όπου παρουσιάζονται οι χώρες και έπειτα να καταχωρηθεί με το κουμπί Add Region. Κάποια χώρα μπορεί να αφαιρεθεί με το κουμπί X στο πίνακα όπου παρουσιάζονται οι χώρες. Ο μέγιστος αριθμός χωρών συνιστάται να είναι δέκα.
+        </h1>
+    </div>
+
+    </div>
+        <div class="datatable">
+        <div class="table-wrapper">
+            <table class="styled-table" id="tableInfo">
+                <tr>
+                    <th>
+                        Region Name
+                    </th>
+                    <th>
+                        Color
+                    </th>
+                    <th>
+
+                    </th>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="add-regions-bidding-input">
+        <div class="regions-bidding">
+            <select id="region-selector">
+
+            </select>
+        </div>
+        <div class="regions-bidding">
+            <select id="timeline-selector">
+
+            </select>
+        </div>
+        <div class="add-region-button" id="region-button">
+            <h1>Add Region</h1>
+        </div>
+    </div>
+
+    <div class="inputs">
+        <div class="inputs-header">
+            <h1>Pick a Date</h1>
+        </div>
+        
+        <div class="datapickers">
+            <div class="start">
+                <h1>Starting Date</h1>
+                <div class="relative max-w-sm">
+                    <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                        </svg>
+                    </div>
+                    <input datepicker type="text" id="start_date"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Select date">
+                </div>
+            </div>
+            <div class="end">
+                <h1>End Date</h1>
+                <div class="relative max-w-sm">
+                    <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                        </svg>
+                    </div>
+                    <input datepicker type="text" id="end_date"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Select date">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="spinner-wrapper">
+        <div class="lds-default invisible" id="spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    </div>
+    <div class="GraphCanvas" id="canvas">
+        <div class="Chart">
+        </div>
+    </div>
+    <div class="datatable">
+        <div class="table-wrapper">
+            <table class="styled-table" id="tableData">
+                <tr>
+                    <th>
+                        Region
+                    </th>
+                    <th>
+                        Minimum
+                    </th>
+                    <th>
+                        Maximum
+                    </th>
+                    <th>
+                        Average
+                    </th>
+                    <th>
+                        Standar Deviation
+                    </th>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <script>
+
+
+        var active_regions = [];
+        const colors = 
+        [
+            "#302530",
+            "#827d2c",
+            "#6d0b8e",
+            "#b75200",
+            "#30212c",
+            "#1f2812",
+            "#37873e",
+            "#b3a8b5",
+            "#91c194",
+            "#dbe0dc",
+            "#121602",
+            "#8d8893",
+            "#3a8fbc",
+            "#9fa3a8",
+            "#25e876"
+        ]
+
+        const BiddingZones = [
+            '10Y1001A1001A39I',
+            '10Y1001A1001A44P',
+            '10Y1001A1001A45N',
+            '10Y1001A1001A46L',
+            '10Y1001A1001A47J',
+            '10Y1001A1001A59C',
+            '10Y1001A1001A70O',
+            '10Y1001A1001A71M',
+            '10Y1001A1001A73I',
+            '10Y1001A1001A74G',
+            '10Y1001A1001A75E',
+            '10Y1001A1001A82H',
+            '10Y1001A1001A885',
+            '10Y1001A1001A893',
+            '10Y1001C--00096J',
+            '10Y1001A1001A788',
+            '10YAT-APG------L',
+            '10YBE----------2',
+            '10YCA-BULGARIA-R',
+            '10YCH-SWISSGRIDZ',
+            '10YCS-CG-TSO---S',
+            '10YCZ-CEPS-----N',
+            '10YDK-1--------W',
+            '10YDK-2--------M',
+            '10YES-REE------0',
+            '10YFI-1--------U',
+            '10YFR-RTE------C',
+            '10YGR-HTSO-----Y',
+            '10YHR-HEP------M',
+            '10YHU-MAVIR----U',
+            '10YLT-1001A0008Q',
+            '10YLV-1001A00074',
+            '10YMK-MEPSO----8',
+            '10YNL----------L',
+            '10YNO-1--------2',
+            '10YNO-2--------T',
+            '10YNO-3--------J',
+            '10YNO-4--------9',
+            '10Y1001A1001A48H',
+            '10YPL-AREA-----S',
+            '10YPT-REN------W',
+            '10YRO-TEL------P',
+            '10YSI-ELES-----O',
+            '10YSK-SEPS-----K'
+        ]
+
+        const BiddingZoneDescriptions = [
+            'Estonia',
+            'Sweeden - Region 1',
+            'Sweeden - Region 2',
+            'Sweeden - Region 3',
+            'Sweeden - Region 4',
+            'Ireland',
+            'Italy - Center North',
+            'Italy - Center South',
+            'Italy - North',
+            'Italy - Sardinia',
+            'Italy - Sicily',
+            'Italy - South',
+            'Italy - SACOAC',
+            'Italy - SACODC',
+            'Italy - Calabria',
+            'Germany',
+            'Austria',
+            'Belgium',
+            'Bulgaria',
+            'Switzerland',
+            'Montenegro',
+            'Czech Republic',
+            'Denmark - Region 1',
+            'Denmark - Region 2',
+            'Spain',
+            'Finland',
+            'France',
+            'Greece',
+            'Croatia',
+            'Hungary',
+            'Lithuania',
+            'Latvia',
+            'North Macedonia',
+            'Netherlands',
+            'Norway - Region 1',
+            'Norway - Region 2',
+            'Norway - Region 3',
+            'Norway - Region 4',
+            'Norway - Region 5',
+            'Poland',
+            'Portugal',
+            'Romania',
+            'Slovenia',
+            'Slovakia'
+        ];
+
+        const Timeline = [
+            "Hourly",
+            "Daily",
+            "Weekly",
+            "Monthly"
+        ]
+
+        const Values = [
+            1,
+            24,
+            168,
+            720
+        ]
+
+        var timelineSelector = document.getElementById("timeline-selector");
+        timelineSelector.innerHTML = "";
+        for(var i = 0; i < Timeline.length; i++)
+        {
+            timelineSelector.innerHTML += `<option value="${Values[i]}">${Timeline[i]}</option>`;
+        }
+
+
+        <!-- Update Region Selector -->
+        var regionSelector = document.getElementById("region-selector");
+        regionSelector.innerHTML = "";
+        for(var i = 0; i < BiddingZoneDescriptions.length; i++)
+        {
+            regionSelector.innerHTML += `<option value="${i}">${BiddingZoneDescriptions[i]}</option>`;
+        }
+
+        <!-- Create Labels -->
+        function createLabels(response){
+            labels = []
+            for(var i = 0; i < response["data"].data.length; i++)
+            {
+                for( var j = 0; j < response["data"].data[i][1].length; j++)
+                {
+                    if(typeof labels[j] == 'undefined') {
+                        labels.push(response["data"].data[i][1][j])
+                    } else {
+                        labels[j] = labels[j] + " - " + response["data"].data[i][1][j];
+                    }
+                } 
+            }
+            return labels;
+        }
+        
+        <!-- Generate Info Table -->
+        function generateTable()
+        {
+            var table = document.getElementById("tableInfo");
+            table.innerHTML = "<tr><th>Region</th><th>Color</th><th></th></tr>";
+            for(var i = 0; i < active_regions.length; i++)
+            {
+                table.innerHTML += "<tr>";
+                table.innerHTML += `<td>${BiddingZoneDescriptions[active_regions[i]]}</td><td><div style="display: flex; justify-content:center; align-items:center; width: 100%"><div style="background-color:${colors[i]}; width: 30px; height: 30px;"></div></div></td><td><div style="width: 100%; height: 100%"><img class="close-icon close-button" data-id="${i}" src="{{ url_for('static',filename='assets/close.svg') }}"></div></td>`;
+                table.innerHTML += "</tr>";
+            }
+            var elements = document.getElementsByClassName("close-button");
+            for(var j = 0; j < elements.length; j++)
+            {
+                elements[j].addEventListener('click', function(){
+                    tableListeners(this)
+                });                
+            }
+        }
+
+        <!-- Generate Data Table -->
+        function generateDataTable(response)
+        {
+            var table = document.getElementById("tableData");
+            table.innerHTML = "<tr><th>Region</th><th>Minimum</th><th>Maximum</th><th>Average</th><th>Standar Deviation</th></tr>";
+            for(var i = 0; i < response["data"].data.length; i++)
+            {
+                table.innerHTML += "<tr>";
+                table.innerHTML += `<td>${BiddingZoneDescriptions[active_regions[i]]}</td><td>${response["data"].data[i][3].toFixed(2)}</td><td>${response["data"].data[i][2].toFixed(2)}</td><td>${response["data"].data[i][4].toFixed(2)}</td><td>${response["data"].data[i][5].toFixed(2)}</td>`
+                table.innerHTML += "</tr>";
+            }
+        }
+
+        <!-- Get Data -->
+        function getData() {
+
+            var spinner = document.getElementById("spinner");
+            spinner.classList.remove("invisible");
+            var chart = document.getElementById("canvas");
+            chart.classList.add("invisible");
+
+            if(document.getElementById("region-selector").value != ""){
+                active_regions.push(document.getElementById("region-selector").value);
+                document.getElementById("region-selector").value = ""
+            }   
+            generateTable();
+
+            axios.post( 
+                '/getRegionData',
+                {
+                    data: active_regions.map((value, index) => {
+                        return BiddingZones[value]
+                    }),
+                    timeline: document.getElementById("timeline-selector").value,
+                    time: [document.getElementById("start_date").value.replaceAll("/","-"), document.getElementById("end_date").value.replaceAll("/","-")]
+                }
+            ).then((response) => {
+                const data = {
+                    labels: createLabels(response),
+                    datasets: []
+                }
+
+                for(var i = 0; i < response["data"].data.length; i++)
+                {
+                    data["datasets"].push({
+                        type: 'line',
+                        label: `${BiddingZoneDescriptions[active_regions[i]]}`,
+                        data: response["data"].data[i][0],
+                        borderColor: colors[i],
+                        fill: false,
+                        stepped: true,
+                    })
+                }
+
+                const config = {
+                    data: data,
+                    options: {
+                        scales: {
+                            y: {
+                                display: true,
+                                title: {
+                                    display: true,
+                                    text: 'Price per MWH'
+                                },
+                                beginAtZero: true,
+                            },
+                            x: {
+                                displau: true,
+                                title: {
+                                    display: true,
+                                    text: 'Dates'
+                                }
+                            }
+                        },
+                        responsive: true,
+                        interaction: {
+                            intersect: false,
+                            axis: 'x'
+                        },
+                        plugins: {
+                        }
+                    }
+                };
+
+                generateDataTable(response)
+
+                const chartArea = document.getElementsByClassName('Chart');
+                if(chartArea[0].childElementCount > 0)
+                {   
+                    chartArea[0].innerHTML = ''
+                }
+                
+
+                chartArea[0].innerHTML = '<canvas id="ChartCanvas"></canvas>';
+                const ctx = document.getElementById("ChartCanvas");
+                new Chart(ctx, config);
+
+                spinner.classList.add("invisible");
+                chart.classList.remove("invisible");
+
+            });
+
+        }
+
+        function redirect (url) {
+            var ua        = navigator.userAgent.toLowerCase(),
+                isIE      = ua.indexOf('msie') !== -1,
+                version   = parseInt(ua.substr(4, 2), 10);
+        
+            // Internet Explorer 8 and lower
+            if (isIE && version < 9) {
+                var link = document.createElement('a');
+                link.href = url;
+                document.body.appendChild(link);
+                link.click();
+            }
+        
+            // All other browsers can use the standard window.location.href (they don't lose HTTP_REFERER like Internet Explorer 8 & lower does)
+            else { 
+                window.location.href = url; 
+            }
+        };
+
+        <!-- Create Listeners -->
+        document.getElementById("region-button").addEventListener("click", function(){
+            getData();
+        });
+        document.getElementById("return-home").addEventListener("click", function(){
+            redirect("/");
+        });
+
+        <!-- Info Table Listeners-->
+        function tableListeners(element){
+            console.log(element.getAttribute("data-id"));
+            active_regions.splice(parseInt(element.getAttribute("data-id")),1);
+            console.log(active_regions);
+            generateTable();
+            getData();
+        }
+
+    </script>
+</body>
+
+</html>
