@@ -19,6 +19,6 @@
 
 1. Εγκαταστήστε τις απαραίτητες βιβλιοθήκες:
    ```bash
-   pip install flask requests xmltodict flask_cors΄΄΄
- Σε περίπτωση σφάλματος πληκτρολογήστε pip3 αντί για pip.
- Έπειτα τρέχοντας απλά το app.py και ανοίγοντας το Browser στο http://localhost:5000 θα μπορείτε να δείτε την ιστοσελίδα.
+   pip install flask requests xmltodict flask_cors```
+    Σε περίπτωση σφάλματος πληκτρολογήστε pip3 αντί για pip.
+    Έπειτα τρέχοντας απλά το app.py και ανοίγοντας το Browser στο http://localhost:5000 θα μπορείτε να δείτε την ιστοσελίδα.
